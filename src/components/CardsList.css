@@ -1,0 +1,47 @@
+.cards-container {
+    position: relative;
+}
+
+.cards-list {
+    display: flex;
+    align-items: center;
+    background-color: antiquewhite;
+    overflow-x: auto;
+    white-space: nowrap;
+    padding-bottom: 10px;
+    position: relative;
+    scrollbar-width: none;
+}
+
+/* .cards-list::-webkit-scrollbar {
+    height: 6px;
+} */
+
+.cards-list::-webkit-scrollbar-thumb {
+    background: #888;
+    border-radius: 10px;
+}
+
+.cards-list::-webkit-scrollbar-thumb:hover {
+    background: #555;
+}
+
+.arrow {
+    position: absolute;
+    top: 50%;
+    /* transform: translateY(-50%); */
+    background-color: rgba(0, 0, 0, 0.5);
+    color: white;
+    border: none;
+    padding: 10px;
+    cursor: pointer;
+    z-index: 10;
+}
+
+.arrow.left {
+    left: 0;
+}
+
+.arrow.right {
+    right: 0;
+}

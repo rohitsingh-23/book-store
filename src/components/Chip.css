@@ -1,0 +1,12 @@
+.chip{
+    background-color: #0C2D57;
+    color: white;
+    font-size: 14px;
+    font-weight: 200;
+    padding: 5px 15px;
+    width: fit-content;
+    margin: 5px;
+    border-radius: 20px;
+    box-shadow: rgba(0, 0, 0, 0.15) 1.95px 1.95px 2.6px;
+
+}

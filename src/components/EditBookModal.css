@@ -1,0 +1,39 @@
+.modal-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    background: rgba(0, 0, 0, 0.5);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.modal-content {
+    background: white;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+    width: 400px;
+}
+
+.modal-content h2 {
+    margin-top: 0;
+}
+
+.modal-content label {
+    display: block;
+    margin: 10px 0;
+}
+
+.modal-content input {
+    width: 100%;
+    padding: 8px;
+    margin: 5px 0;
+    box-sizing: border-box;
+}
+
+.modal-content button {
+    margin-right: 10px;
+}
