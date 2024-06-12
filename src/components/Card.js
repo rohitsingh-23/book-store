@@ -9,12 +9,12 @@ const Card = ({ item }) => {
   };
   return (
     <div className="books-card">
-      <img className="books-card-image" src={item.thumbnailUrl} alt="" />
-      <p className="books-card-title">{item.title}</p>
+      <img className="books-card-image" src={item?.thumbnailUrl} alt="" />
+      <p className="books-card-title">{item?.title}</p>
       <p className="books-card-subText">
-        Categories: {item.categories.join(",")}
+        Categories: {item?.categories?.join(",")}
       </p>
-      <p className="card-pages">{item.pageCount}</p>
+      <p className="card-pages">{item?.pageCount}</p>
       <button onClick={handleCardClick}>View Details</button>
     </div>
   );

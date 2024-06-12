@@ -6,12 +6,14 @@ import Chip from "../components/Chip";
 import EditBookModal from "../components/EditBookModal";
 import { useDispatch } from "react-redux";
 import { editBook } from "../redux/actions";
+import Loader from "../components/Loader";
 
 const BookDetails = () => {
   const { id } = useParams();
   const [book, setBook] = useState({});
   const [isModalOpen, setIsModalOpen] = useState(false);
   const dispatch = useDispatch();
+  const [loading, setLoading] = useState(false);
 
   function formatDate(isoDateString) {
     const date = new Date(isoDateString);
@@ -57,10 +59,12 @@ const BookDetails = () => {
   }
 
   useEffect(() => {
+    setLoading(true);
     axios
       .get(`https://json-server-uz5c.onrender.com/books/${id}`)
       .then((res) => {
         setBook(res.data);
+        setLoading(false);
       });
   }, []);
 
@@ -77,6 +81,10 @@ const BookDetails = () => {
     dispatch(editBook(updatedBook));
     setBook(updatedBook);
   };
+
+  if (loading) {
+    return <Loader />;
+  }
 
   return (
     book && (

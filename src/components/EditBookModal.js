@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import "./EditBookModal.css";
 
-const EditBookModal = ({ book, onClose, onUpdate }) => {
+const EditBookModal = ({ book, onClose, onUpdate, type }) => {
   const [editedBook, setEditedBook] = useState({ ...book });
 
   const handleChange = (e) => {
@@ -9,35 +9,22 @@ const EditBookModal = ({ book, onClose, onUpdate }) => {
     setEditedBook({ ...editedBook, [name]: value });
   };
 
-  const formatDateToISOString = (date) => {
-    const newDate = new Date(date);
-    return newDate.toISOString();
-  };
-
   const handleUpdate = () => {
-    // if (editedBook.publishedDate) {
-    //   const isoDate = formatDateToISOString(editedBook.publishedDate);
-    //   setEditedBook((prevState) => ({
-    //     ...prevState,
-    //     publishedDate: {
-    //       date: isoDate,
-    //     },
-    //   }));
-    // }
+    let updatedAuthors = editedBook?.authors;
+    let updatedCategories = editedBook?.categories;
 
-    let  updatedAuthors = editedBook.authors;
-    let updatedCategories = editedBook.categories
+    if (editedBook?.authors.length > 0) {
+      if (!Array.isArray(editedBook?.authors)) {
+        updatedAuthors = editedBook?.authors
+          ?.split(",")
+          ?.map((author) => author.trim());
+      }
 
-    if (!Array.isArray(editedBook.authors)) {
-      updatedAuthors = editedBook.authors
-        .split(",")
-        .map((author) => author.trim());
-    }
-
-    if (!Array.isArray(editedBook.categories)) {
-      updatedCategories = editedBook.categories
-      .split(",")
-      .map((category) => category.trim());
+      if (!Array.isArray(editedBook?.categories)) {
+        updatedCategories = editedBook?.categories
+          .split(",")
+          .map((category) => category.trim());
+      }
     }
 
     const updatedBookDetails = {
@@ -96,9 +83,9 @@ const EditBookModal = ({ book, onClose, onUpdate }) => {
             type="text"
             name="authors"
             value={
-              Array.isArray(editedBook.authors)
-                ? editedBook.authors.join(", ")
-                : editedBook.authors
+              Array.isArray(editedBook?.authors)
+                ? editedBook.authors?.join(", ")
+                : editedBook?.authors
             }
             onChange={handleChange}
           />
@@ -109,14 +96,34 @@ const EditBookModal = ({ book, onClose, onUpdate }) => {
             type="text"
             name="categories"
             value={
-              Array.isArray(editedBook.categories)
-                ? editedBook.categories.join(", ")
-                : editedBook.categories
+              Array.isArray(editedBook?.categories)
+                ? editedBook.categories?.join(", ")
+                : editedBook?.categories
             }
             onChange={handleChange}
           />
         </label>
-        <button onClick={handleUpdate}>Update</button>
+        <label>
+          Pages:
+          <input
+            type="number"
+            name="pageCount"
+            value={editedBook.pageCount}
+            onChange={handleChange}
+          />
+        </label>
+        <label>
+          Thumbnail Url:
+          <input
+            type="text"
+            name="thumbnailUrl"
+            value={editedBook.thumbnailUrl}
+            onChange={handleChange}
+          />
+        </label>
+        <button onClick={handleUpdate}>
+          {type == "ADD" ? "Add" : "Update"}
+        </button>
         <button onClick={onClose}>Cancel</button>
       </div>
     </div>
